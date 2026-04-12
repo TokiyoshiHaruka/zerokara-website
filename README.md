@@ -1,37 +1,179 @@
 # ZEROKARA Website
 
-ZEROKARA Website is the official website and backend API for ZERO. It includes a multilingual static frontend, public activity and schedule pages, bug reporting, admin management screens, and a Node.js API backed by MySQL.
+**语言 / Language / 言語**: [中文](#中文) | [日本語](#日本語) | [English](#english)
+
+---
+
+## 中文
+
+ZEROKARA Website 是 ZERO / ZEROKARA 的官方网站与后台 API 项目。仓库包含官网静态页面、活动与日程展示、BUG 反馈、后台管理页面、Node.js 后端 API、MySQL 数据表初始化脚本，以及 Docker / Nginx 部署示例。
+
+线上站点: https://zerokara.pro
+
+### 项目特性
+
+- 多语言官网: 支持日文、繁体中文、英文。
+- 官网页面: 首页、活动、日程、加入、联系、登录、BUG 反馈。
+- 后台页面: 活动管理、日程管理、BUG 管理、用户管理、统计面板。
+- 后端 API: Express + MySQL，使用 JWT 进行后台鉴权。
+- 数据库脚本: 自动创建表结构，支持初始化第一个管理员账号。
+- 本地部署: 提供 Docker Compose，一条命令启动 MySQL、API 和 Nginx。
+- 生产部署参考: 提供 Nginx `/api/*` 反代配置，可接入 1Panel / OpenResty。
+
+### 技术栈
+
+- 前端: HTML, CSS, JavaScript, Vue global runtime。
+- 后端: Node.js, Express, MySQL, bcrypt, JSON Web Token。
+- 部署: Docker, Docker Compose, Nginx / OpenResty, MySQL。
+
+### 仓库结构
+
+```text
+frontend/          官网静态页面、后台页面、前端资源
+backend/           Express API、MySQL schema、初始化脚本
+deploy/nginx/      Nginx 反向代理示例
+docs/              API、资源、部署说明
+docker-compose.yml 本地完整运行环境
+.env.example       环境变量模板
+```
+
+### 快速开始
+
+```sh
+cp .env.example .env
+docker compose up -d --build
+docker compose exec api npm run init-db
+```
+
+打开:
+
+- 官网: http://localhost:8080
+- API 健康检查: http://localhost:8080/api/health
+
+本地管理员账号由 `.env` 控制:
+
+- `ZERO_ADMIN_USERNAME`
+- `ZERO_ADMIN_PASSWORD`
+
+### 手动运行后端
+
+```sh
+cd backend
+npm install --production
+MYSQL_HOST=127.0.0.1 MYSQL_PASSWORD=change-me JWT_SECRET=change-me npm run ensure-schema
+ZERO_ADMIN_PASSWORD=change-me-admin-password npm run init-db
+npm start
+```
+
+### 环境变量
+
+复制 `.env.example` 为 `.env`，并在真实部署前修改所有占位值。
+
+核心变量:
+
+- `MYSQL_HOST`
+- `MYSQL_PORT`
+- `MYSQL_DATABASE`
+- `MYSQL_USER`
+- `MYSQL_PASSWORD`
+- `JWT_SECRET`
+- `ZERO_ADMIN_USERNAME`
+- `ZERO_ADMIN_PASSWORD`
+
+### 媒体资源说明
+
+仓库没有包含生产环境音乐文件、WAV 母带和原始大视频，以避免仓库过大以及潜在版权问题。资源替换方式见 [docs/assets.md](docs/assets.md)。
+
+### API 文档
+
+详见 [docs/api.md](docs/api.md)。
+
+### 部署说明
+
+详见 [docs/deployment.md](docs/deployment.md)。
+
+### 安全说明
+
+- 不要提交 `.env`、TLS 证书、私钥、数据库 dump 或生产日志。
+- 生产环境必须使用长随机 `JWT_SECRET`。
+- 初始化管理员后请立即修改默认密码。
+- API 建议只通过 Nginx / OpenResty 反向代理暴露。
+
+### 许可证
+
+MIT License. 详见 [LICENSE](LICENSE)。
+
+---
+
+## 日本語
+
+ZEROKARA Website は、ZERO / ZEROKARA の公式サイトとバックエンド API をまとめたオープンソースプロジェクトです。静的フロントエンド、活動・スケジュール表示、バグ報告、管理画面、Node.js API、MySQL 初期化スクリプト、Docker / Nginx のデプロイ例を含みます。
+
+公開サイト: https://zerokara.pro
+
+### 主な機能
+
+- 多言語サイト: 日本語、繁体字中国語、英語。
+- ページ: ホーム、活動、スケジュール、参加案内、問い合わせ、ログイン、バグ報告。
+- 管理画面: 活動、スケジュール、バグ、ユーザー、統計。
+- API: Express + MySQL、JWT による管理者認証。
+- ローカル実行: Docker Compose で MySQL、API、Nginx を起動。
+- デプロイ例: Nginx の `/api/*` リバースプロキシ設定。
+
+### 技術スタック
+
+- Frontend: HTML, CSS, JavaScript, Vue global runtime。
+- Backend: Node.js, Express, MySQL, bcrypt, JSON Web Token。
+- Deployment: Docker, Docker Compose, Nginx / OpenResty, MySQL。
+
+### クイックスタート
+
+```sh
+cp .env.example .env
+docker compose up -d --build
+docker compose exec api npm run init-db
+```
+
+アクセス:
+
+- Website: http://localhost:8080
+- API health check: http://localhost:8080/api/health
+
+### ドキュメント
+
+- API: [docs/api.md](docs/api.md)
+- Assets: [docs/assets.md](docs/assets.md)
+- Deployment: [docs/deployment.md](docs/deployment.md)
+- License: [LICENSE](LICENSE)
+
+### 注意事項
+
+本番環境の音楽ファイル、WAV マスター、元サイズの動画は含まれていません。必要なメディアはライセンスを確認したうえで追加してください。
+
+---
+
+## English
+
+ZEROKARA Website is the official website and backend API project for ZERO / ZEROKARA. It includes the static frontend, activity and schedule pages, bug reporting, admin screens, a Node.js API, MySQL schema scripts, and Docker / Nginx deployment examples.
 
 Live site: https://zerokara.pro
 
-## Features
+### Features
 
-- Multilingual frontend: Japanese, Traditional Chinese, and English.
-- Home, activity, schedule, join, contact, login, and bug report pages.
-- Admin pages for activities, schedules, users, bugs, and statistics.
-- Express API with JWT-based admin authentication.
-- MySQL schema creation and admin bootstrap scripts.
-- Docker Compose setup for local development and self-hosting.
-- Nginx reverse proxy example for `/api/*`.
+- Multilingual website: Japanese, Traditional Chinese, and English.
+- Pages: home, activities, schedule, join, contact, login, and bug reports.
+- Admin screens: activities, schedules, bugs, users, and statistics.
+- Backend API: Express + MySQL with JWT-based admin authentication.
+- Local runtime: Docker Compose starts MySQL, API, and Nginx.
+- Deployment example: Nginx reverse proxy for `/api/*`.
 
-## Tech Stack
+### Tech Stack
 
 - Frontend: HTML, CSS, JavaScript, Vue global runtime.
 - Backend: Node.js, Express, MySQL, bcrypt, JSON Web Token.
-- Deployment: Docker, Nginx/OpenResty, MySQL.
+- Deployment: Docker, Docker Compose, Nginx / OpenResty, MySQL.
 
-## Repository Layout
-
-```text
-frontend/          Static website and admin pages
-backend/           Express API and MySQL schema scripts
-deploy/nginx/      Nginx reverse proxy example
-docs/              API, asset, and deployment documentation
-docker-compose.yml Local full-stack runtime
-.env.example       Example local environment variables
-```
-
-## Quick Start
+### Quick Start
 
 ```sh
 cp .env.example .env
@@ -44,55 +186,13 @@ Open:
 - Website: http://localhost:8080
 - API health check: http://localhost:8080/api/health
 
-Default local admin credentials come from your `.env` values:
+### Documentation
 
-- `ZERO_ADMIN_USERNAME`
-- `ZERO_ADMIN_PASSWORD`
+- API: [docs/api.md](docs/api.md)
+- Assets: [docs/assets.md](docs/assets.md)
+- Deployment: [docs/deployment.md](docs/deployment.md)
+- License: [LICENSE](LICENSE)
 
-## Manual Backend Setup
+### Notes
 
-```sh
-cd backend
-npm install --production
-MYSQL_HOST=127.0.0.1 MYSQL_PASSWORD=change-me JWT_SECRET=change-me npm run ensure-schema
-ZERO_ADMIN_PASSWORD=change-me-admin-password npm run init-db
-npm start
-```
-
-## Configuration
-
-Copy `.env.example` to `.env` and change every placeholder value before running a real deployment.
-
-Important variables:
-
-- `MYSQL_HOST`
-- `MYSQL_PORT`
-- `MYSQL_DATABASE`
-- `MYSQL_USER`
-- `MYSQL_PASSWORD`
-- `JWT_SECRET`
-- `ZERO_ADMIN_USERNAME`
-- `ZERO_ADMIN_PASSWORD`
-
-## Media Assets
-
-Production music files, WAV masters, and the original full-size background video are not included. See [docs/assets.md](docs/assets.md) for the replacement policy and playlist example.
-
-## API
-
-See [docs/api.md](docs/api.md).
-
-## Deployment
-
-See [docs/deployment.md](docs/deployment.md).
-
-## Security Notes
-
-- Never commit `.env`, TLS certificates, private keys, database dumps, or production logs.
-- Use a long random `JWT_SECRET` in production.
-- Change the first admin password immediately after bootstrap.
-- Keep the API behind Nginx or another reverse proxy.
-
-## License
-
-MIT License. See [LICENSE](LICENSE).
+Production music files, WAV masters, and the original full-size video are not included. Add your own licensed media before deploying a customized version.
