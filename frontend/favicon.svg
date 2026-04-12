@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ZERO">
+  <defs>
+    <linearGradient id="zeroGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#59d7ff" />
+      <stop offset="100%" stop-color="#ff6fd8" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#07111f" />
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="none" stroke="url(#zeroGlow)" stroke-width="2.5" opacity="0.95" />
+  <path d="M18 18H46V24L26 42H46V46H18V40L38 22H18V18Z" fill="#eef6ff" />
+</svg>

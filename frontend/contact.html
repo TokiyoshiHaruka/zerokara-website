@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>連絡先 - ZERO 社団</title>
+  <link rel="stylesheet" href="Css/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body data-lang="ja">
+  <!-- 粒子背景容器 -->
+  <div id="particles-js"></div>
+
+  <!-- 导航栏 -->
+  <nav class="nav-sidebar">
+    <div class="logo">
+      <a href="index.html"><span class="nav-logo">ZERO</span></a>
+    </div>
+    <div class="lang-switcher">
+      <select id="lang-select">
+        <option value="ja" selected>日本語</option>
+        <option value="zh-TW">繁體中文</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+    <ul>
+      <li><a href="activity.html" class="nav-link" data-ja="活動内容" data-zh-tw="活動內容" data-en="Activities">活動内容</a></li>
+      <li><a href="schedule.html" class="nav-link" data-ja="日程表" data-zh-tw="日程表" data-en="Schedule">日程表</a></li>
+      <li><a href="contact.html" class="nav-link" data-ja="連絡先" data-zh-tw="聯絡我們" data-en="Contact Us">連絡先</a></li>
+      <li><a href="join.html" class="nav-link" data-ja="加入する" data-zh-tw="加入我們" data-en="Join Us">加入する</a></li>
+      <li><a href="login.html" class="nav-link" data-ja="社員ログイン" data-zh-tw="社員登入" data-en="Member Login">社員ログイン</a></li>
+    </ul>
+  </nav>
+
+  <!-- 联系内容 -->
+  <main class="page-content">
+    <div class="content-card">
+      <h1 class="neon-text" data-ja="連絡先" data-zh-tw="聯絡我們" data-en="Contact Us">連絡先</h1>
+      <div class="contact-info">
+        <p data-ja="Discord: 加入服务器" data-zh-tw="Discord: 加入伺服器" data-en="Discord: Join Server"><strong>Discord:</strong> <a href="https://discord.gg/kJsrBnX6">加入服务器</a></p>
+        <p data-ja="Email: zero.club@example.com" data-zh-tw="Email: zero.club@example.com" data-en="Email: zero.club@example.com"><strong>Email:</strong> zero.club@example.com</p>
+        <p data-ja="Twitter: @ZERO_Club" data-zh-tw="Twitter: @ZERO_Club" data-en="Twitter: @ZERO_Club"><strong>Twitter:</strong> @ZERO_Club</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- 脚本 -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 60, density: { enable: true, value_area: 800 } },
+        color: { value: "#00d4ff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: "#00d4ff", opacity: 0.4, width: 1 },
+        move: { enable: true, speed: 2, direction: "none", random: false }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
+        modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+      }
+    });
+  </script>
+  <script>
+    // 语言切换功能
+    const langSelect = document.getElementById('lang-select');
+    langSelect.addEventListener('change', function() {
+      const lang = this.value;
+      document.body.setAttribute('data-lang', lang);
+      document.querySelectorAll('[data-ja]').forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`) || el.getAttribute('data-ja');
+      });
+    });
+  </script>
+</body>
+</html>

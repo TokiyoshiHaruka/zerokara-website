@@ -1,0 +1,16 @@
+MapleMonoNormal-NF-CN-Bold
+MapleMonoNormal-NF-CN-BoldItalic
+MapleMonoNormal-NF-CN-ExtraBold
+MapleMonoNormal-NF-CN-ExtraBoldItalic
+MapleMonoNormal-NF-CN-ExtraLight
+MapleMonoNormal-NF-CN-ExtraLightItalic
+MapleMonoNormal-NF-CN-Italic
+MapleMonoNormal-NF-CN-Light
+MapleMonoNormal-NF-CN-LightItalic
+MapleMonoNormal-NF-CN-Medium
+MapleMonoNormal-NF-CN-MediumItalic
+MapleMonoNormal-NF-CN-Regular
+MapleMonoNormal-NF-CN-SemiBold
+MapleMonoNormal-NF-CN-SemiBoldItalic
+MapleMonoNormal-NF-CN-Thin
+MapleMonoNormal-NF-CN-ThinItalic

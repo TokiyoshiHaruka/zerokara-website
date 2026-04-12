@@ -1,0 +1,24 @@
+﻿.bug-form { display: grid; gap: 18px; }
+.form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.form-group label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 13px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; min-height: 48px; padding: 12px 14px; border-radius: 16px; border: 1px solid rgba(173,217,255,.14); background: rgba(255,255,255,.04); color: var(--text); font-family: inherit; }
+.form-group textarea { min-height: 160px; resize: vertical; }
+.severity-selector { display: flex; flex-wrap: wrap; gap: 10px; }
+.severity-option { position: relative; }
+.severity-option input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.severity-badge { position: relative; display: inline-flex; align-items: center; justify-content: center; min-width: 84px; min-height: 52px; padding: 0 18px; border-radius: 18px; font-weight: 700; border: 2px solid transparent; transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), filter var(--transition); }
+.severity-option input:checked + .severity-badge { transform: translateY(-3px) scale(1.05); box-shadow: 0 12px 28px rgba(0,0,0,.26), 0 0 0 2px rgba(255,255,255,.12) inset; filter: brightness(1.12); }
+.severity-option input:checked + .severity-badge::after { content: "SELECTED"; position: absolute; top: -10px; right: 10px; padding: 3px 8px; border-radius: 999px; font-size: 9px; letter-spacing: .12em; background: rgba(255,255,255,.92); color: #04111f; }
+.severity-p0 { background: rgba(255, 93, 116, .22); color: #ffd6de; }
+.severity-p1 { background: rgba(255, 150, 71, .22); color: #ffd39f; }
+.severity-p2 { background: rgba(255, 207, 86, .22); color: #ffe7a8; }
+.severity-p3 { background: rgba(89, 215, 255, .22); color: #b7efff; }
+.success-message { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding: 24px 0 8px; }
+.success-icon { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: rgba(100,232,165,.18); color: var(--green); font-weight: 700; }
+.success-text h3 { margin: 0 0 8px; }
+.success-text p { margin: 0; color: var(--muted); line-height: 1.7; }
+@media (max-width: 720px) { .form-row { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+  .severity-selector { gap: 8px; }
+  .severity-badge { min-width: 72px; min-height: 46px; padding: 0 14px; border-radius: 16px; }
+}

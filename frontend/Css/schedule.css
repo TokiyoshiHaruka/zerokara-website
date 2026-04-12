@@ -1,0 +1,26 @@
+﻿.schedule-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 24px; }
+.schedule-legend { display: flex; align-items: center; gap: 8px; color: var(--muted); flex-wrap: wrap; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.legend-dot.type-meeting { background: var(--cyan); }
+.legend-dot.type-event { background: var(--pink); }
+.legend-dot.type-other { background: var(--gold); }
+.schedule-layout { display: grid; grid-template-columns: minmax(280px, 340px) minmax(0, 1fr); gap: 22px; }
+.schedule-calendar-card, .schedule-timeline-card { padding: 20px; }
+.calendar-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.calendar-nav-btn { min-width: 40px; min-height: 40px; border-radius: 999px; border: 1px solid rgba(173,217,255,0.14); background: rgba(255,255,255,0.04); color: var(--text); cursor: pointer; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.calendar-weekday, .calendar-day, .calendar-empty { min-height: 38px; display: grid; place-items: center; border-radius: 12px; background: rgba(255,255,255,0.03); }
+.calendar-weekday { color: var(--muted); font-size: 12px; }
+.calendar-day.has-event { background: rgba(89,215,255,0.16); box-shadow: 0 0 0 1px rgba(89,215,255,0.22) inset; }
+.schedule-timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.timeline-item { padding: 14px; border-radius: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+.timeline-date, .timeline-meta { color: var(--muted); font-size: 12px; }
+.timeline-title { margin: 4px 0; font-size: 16px; }
+.timeline-desc { color: var(--text); line-height: 1.7; }
+@media (max-width: 900px) { .schedule-layout { grid-template-columns: 1fr; } .schedule-header { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 640px) {
+  .schedule-calendar-card, .schedule-timeline-card { padding: 16px; }
+  .calendar-grid { gap: 4px; }
+  .calendar-weekday, .calendar-day, .calendar-empty { min-height: 32px; font-size: 12px; }
+  .timeline-item { padding: 12px; }
+}

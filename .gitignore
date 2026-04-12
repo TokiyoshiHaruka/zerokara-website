@@ -1,0 +1,34 @@
+.DS_Store
+Thumbs.db
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+
+# Runtime data
+logs/
+*.log
+tmp/
+cache/
+mysql-data/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Large/private media. See docs/assets.md.
+frontend/BGM/
+frontend/**/*.wav
+frontend/Video/Video.mp4
+frontend/Font/*.ttf
+
+# Local editor state
+.vscode/
+.idea/
