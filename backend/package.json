@@ -4,13 +4,15 @@
   "description": "ZERO 社團網站後端 API",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "init-db": "node src/init-db.js",
-    "ensure-schema": "node src/ensure-schema.js"
+    "test": "node --test tests/*.test.js",
+    "start": "node --require ./src/load-env.js src/server.js",
+    "init-db": "node --require ./src/load-env.js src/init-db.js",
+    "ensure-schema": "node --require ./src/load-env.js src/ensure-schema.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
     "express": "^4.22.2",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.11.0"

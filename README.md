@@ -57,11 +57,15 @@ docker compose exec api npm run init-db
 
 ### 手动运行后端
 
+先在完整仓库的根目录创建 `.env`。从完整仓库运行时，后端的 npm 命令会自动读取这个文件；Shell 或容器已经注入的环境变量优先级更高。手动运行时需要另行提供可访问的 MySQL 实例。只部署 `backend` 目录时不会向父目录查找 `.env`，请由进程管理器注入环境变量。
+
 ```sh
+cp .env.example .env
 cd backend
-npm install --production
-MYSQL_HOST=127.0.0.1 MYSQL_PASSWORD=change-me JWT_SECRET=change-me npm run ensure-schema
-ZERO_ADMIN_PASSWORD=change-me-admin-password npm run init-db
+npm ci
+npm test
+npm run ensure-schema
+npm run init-db
 npm start
 ```
 
@@ -91,6 +95,8 @@ npm start
 ### 部署说明
 
 详见 [docs/deployment.md](docs/deployment.md)。
+
+AI 辅助维护范围见 [AI_USAGE.md](AI_USAGE.md)。
 
 ### 安全说明
 
@@ -139,11 +145,26 @@ docker compose exec api npm run init-db
 - Website: http://localhost:8080
 - API health check: http://localhost:8080/api/health
 
+### バックエンド開発
+
+完全なリポジトリから実行する場合、リポジトリ直下の `.env` は以下の npm コマンドから自動的に読み込まれます。シェルやコンテナで設定済みの環境変数は上書きされません。`backend` ディレクトリだけを配置した環境では親ディレクトリの `.env` を検索しないため、プロセスマネージャーから環境変数を設定してください。手動実行時は、接続可能な MySQL を別途用意してください。
+
+```sh
+cp .env.example .env
+cd backend
+npm ci
+npm test
+npm run ensure-schema
+npm run init-db
+npm start
+```
+
 ### ドキュメント
 
 - API: [docs/api.md](docs/api.md)
 - Assets: [docs/assets.md](docs/assets.md)
 - Deployment: [docs/deployment.md](docs/deployment.md)
+- AI-assisted maintenance: [AI_USAGE.md](AI_USAGE.md)
 - License: [LICENSE](LICENSE)
 
 ### 注意事項
@@ -186,11 +207,26 @@ Open:
 - Website: http://localhost:8080
 - API health check: http://localhost:8080/api/health
 
+### Backend Development
+
+When run from a full repository checkout, the backend npm commands automatically read `.env` from the repository root. Values already supplied by the shell or container take precedence. A standalone `backend` deployment does not search parent directories for `.env`; inject its environment through the process manager instead. A reachable MySQL instance must be provided separately when running the backend directly on the host.
+
+```sh
+cp .env.example .env
+cd backend
+npm ci
+npm test
+npm run ensure-schema
+npm run init-db
+npm start
+```
+
 ### Documentation
 
 - API: [docs/api.md](docs/api.md)
 - Assets: [docs/assets.md](docs/assets.md)
 - Deployment: [docs/deployment.md](docs/deployment.md)
+- AI-assisted maintenance: [AI_USAGE.md](AI_USAGE.md)
 - License: [LICENSE](LICENSE)
 
 ### Notes
