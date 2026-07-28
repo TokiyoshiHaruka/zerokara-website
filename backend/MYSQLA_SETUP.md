@@ -17,6 +17,8 @@ npm run ensure-schema
 npm run init-db
 ```
 
+`zero-api` 作为独立目录部署时不会向父目录查找 `.env`。请通过 1Panel 或其他进程管理器注入下列环境变量，避免误读同级应用的配置文件。
+
 3. 确认环境变量至少包含：
 
 ```bash
