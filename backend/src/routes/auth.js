@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const pool = require("../db");
 const { JWT_SECRET, TOKEN_EXPIRES } = require("../middleware/auth");
+const { loginRateLimiter } = require("../rate-limit");
 
 const router = express.Router();
 
@@ -50,7 +51,7 @@ async function loginHandler(req, res) {
   }
 }
 
-router.post("/api/login", loginHandler);
-router.post("/login", loginHandler);
+router.post("/api/login", loginRateLimiter, loginHandler);
+router.post("/login", loginRateLimiter, loginHandler);
 
 module.exports = router;
