@@ -23,7 +23,7 @@ async function seedAdmin() {
     );
 
     if (rows.length > 0) {
-      console.log(`[INIT-DB] admin user already exists: ${adminUser.username}`);
+      console.log("[INIT-DB] admin user already exists.");
       return;
     }
 
@@ -34,7 +34,7 @@ async function seedAdmin() {
       [adminUser.username, adminUser.displayName, hash, adminUser.role]
     );
 
-    console.log(`[INIT-DB] admin user created: ${adminUser.username}`);
+    console.log("[INIT-DB] admin user created.");
   } finally {
     conn.release();
   }

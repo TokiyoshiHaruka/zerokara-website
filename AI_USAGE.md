@@ -5,3 +5,13 @@ AI-assisted tooling was used for repository inspection, test scaffolding, and do
 The shipped behavior is bounded by automated tests and read-only CI checks. Existing shell and container environment variables remain authoritative. A full repository checkout can load its root `.env`, while standalone backend and Docker deployments do not probe parent directories for configuration.
 
 No production deployment, database, user data, or real credentials were accessed or supplied to an AI system as part of this update. The website and backend functionality predate this maintenance work.
+
+## 2026-07-29 CodeQL remediation
+
+OpenAI Codex assisted with CodeQL triage, rate-limit test scaffolding,
+proxy-boundary validation, and the initializer logging correction. The retained
+behavior is bounded by backend tests, syntax checks, dependency audit, CI, and
+CodeQL analysis.
+
+No production deployment, database, user data, or real credential was accessed
+during this maintenance change.
