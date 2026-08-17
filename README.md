@@ -59,6 +59,8 @@ docker compose exec api npm run init-db
 
 先在完整仓库的根目录创建 `.env`。从完整仓库运行时，后端的 npm 命令会自动读取这个文件；Shell 或容器已经注入的环境变量优先级更高。手动运行时需要另行提供可访问的 MySQL 实例。只部署 `backend` 目录时不会向父目录查找 `.env`，请由进程管理器注入环境变量。
 
+`TRUST_PROXY_HOPS` 必须设置为客户端与 Express 之间受信任反向代理的准确跳数。客户端直接访问 Express 时保持为 `0`；本仓库的 Docker Compose 通过一个 Nginx 代理访问 API，因此设置为 `1`。
+
 ```sh
 cp .env.example .env
 cd backend
@@ -149,6 +151,8 @@ docker compose exec api npm run init-db
 
 完全なリポジトリから実行する場合、リポジトリ直下の `.env` は以下の npm コマンドから自動的に読み込まれます。シェルやコンテナで設定済みの環境変数は上書きされません。`backend` ディレクトリだけを配置した環境では親ディレクトリの `.env` を検索しないため、プロセスマネージャーから環境変数を設定してください。手動実行時は、接続可能な MySQL を別途用意してください。
 
+`TRUST_PROXY_HOPS` には、クライアントと Express の間にある信頼済みリバースプロキシの正確なホップ数を設定してください。Express に直接接続する場合は `0` のままにし、このリポジトリの Docker Compose は Nginx を 1 台経由するため `1` を使用します。
+
 ```sh
 cp .env.example .env
 cd backend
@@ -210,6 +214,8 @@ Open:
 ### Backend Development
 
 When run from a full repository checkout, the backend npm commands automatically read `.env` from the repository root. Values already supplied by the shell or container take precedence. A standalone `backend` deployment does not search parent directories for `.env`; inject its environment through the process manager instead. A reachable MySQL instance must be provided separately when running the backend directly on the host.
+
+Set `TRUST_PROXY_HOPS` to the exact number of trusted reverse-proxy hops between the client and Express. Keep it at `0` when clients reach Express directly; this repository's Docker Compose uses `1` because requests pass through one Nginx proxy.
 
 ```sh
 cp .env.example .env

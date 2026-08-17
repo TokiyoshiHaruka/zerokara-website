@@ -24,6 +24,7 @@ services:
         condition: service_healthy
     environment:
       PORT: 3000
+      TRUST_PROXY_HOPS: 1
       MYSQL_HOST: mysql
       MYSQL_PORT: 3306
       MYSQL_DATABASE: ${MYSQL_DATABASE:-zero_site}
